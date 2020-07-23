@@ -101,7 +101,7 @@ install:
     echo "source-repository-package"                                          >> cabal.project
     echo "  type:     git"                                                    >> cabal.project
     echo "  location: https://github.com/hstream-io/log-store"                >> cabal.project
-    echo "  tag:      6d6ba23451cfaaf8e340ad1c100d4230c758f944"               >> cabal.project
+    echo "  tag:      4730eb8b8dfb67488d65a373d08ee3334b490e81"               >> cabal.project
     echo ""                                                                   >> cabal.project
     echo "source-repository-package"                                          >> cabal.project
     echo "  type:     git"                                                    >> cabal.project
@@ -142,7 +142,7 @@ script:
     echo "source-repository-package"                                          >> cabal.project
     echo "  type:     git"                                                    >> cabal.project
     echo "  location: https://github.com/hstream-io/log-store"                >> cabal.project
-    echo "  tag:      6d6ba23451cfaaf8e340ad1c100d4230c758f944"               >> cabal.project
+    echo "  tag:      4730eb8b8dfb67488d65a373d08ee3334b490e81"               >> cabal.project
     echo ""                                                                   >> cabal.project
     echo "source-repository-package"                                          >> cabal.project
     echo "  type:     git"                                                    >> cabal.project

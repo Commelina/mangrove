@@ -7,6 +7,15 @@ port: 6560
 # Path to the database on the disk
 db-path: /tmp/db-test
 
+# Size of DB write buffer, in bytes
+writeBufferSize: 1073741824
+
+# DB statistics
+enableDBStats: true
+
+# DB statistics dump period, in seconds
+dbStatsPeriodSec: 10
+
 logger:
   formatter: rich   # rich or simple
   level: info

@@ -17,12 +17,22 @@ spec :: Spec
 spec = do
   streamPutGet
 
+defaultWriteBufferSize :: Int
+defaultWriteBufferSize = 64 * 1024 * 1024
+
+defaultEnableDBStats :: Bool
+defaultEnableDBStats = True
+
+defaultDBStatsPeriodSec :: Int
+defaultDBStatsPeriodSec = 10
+
 streamPutGet :: Spec
 streamPutGet = describe "Stream Put Get operations" $ do
   it "put one element to db and then get it out" $ do
     withSystemTempDirectory "rocksdb-test" $ \dbdir -> do
       bracket
-        (Store.initialize $ Store.Config dbdir)
+        (Store.initialize $
+          Store.Config dbdir defaultWriteBufferSize defaultEnableDBStats defaultDBStatsPeriodSec)
         (runReaderT Store.shutDown)
         putget `shouldReturn` True
 

@@ -118,10 +118,13 @@ runApp env app = runReaderT (unApp app) env
 -- Server settings
 
 data ServerSettings m =
-  ServerSettings { serverHost    :: !NS.HostName
-                 , serverPort    :: !Int
-                 , dbPath        :: !String
-                 , loggerSetting :: !(LoggerSetting m)
+  ServerSettings { serverHost       :: !NS.HostName
+                 , serverPort       :: !Int
+                 , dbPath           :: !String
+                 , writeBufferSize  :: !Int
+                 , enableDBStats    :: !Bool
+                 , dbStatsPeriodSec :: !Int
+                 , loggerSetting    :: !(LoggerSetting m)
                  }
   deriving (Generic)
 
