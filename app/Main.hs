@@ -19,6 +19,7 @@ import qualified Log.Store.Base         as LogStore
 import           Mangrove               (App, DatabaseSetting (..), Env (..),
                                          ServerSettings (..))
 import qualified Mangrove               as Mangrove
+import           Data.IORef
 
 main :: IO ()
 main = do
@@ -39,13 +40,14 @@ main = do
 
 runServer :: LogStore.Context -> App ()
 runServer ctx = do
+  coreRef <- liftIO $ newIORef 0
   Env{..} <- ask
   let h = serverHost serverSettings
       p = show (serverPort serverSettings)
   Colog.logInfo "------------------------- Mangrove -------------------------"
   Colog.logInfo $ "Listening on "
     <> Text.pack (serverHost serverSettings) <> ":" <> Text.pack p
-  HESP.runTCPServerG' h p setSocketOptions clean $ \(sock, _) -> go sock
+  HESP.runTCPServerG' coreRef h p setSocketOptions clean $ \(sock, _) -> go sock
   where
     go :: Socket -> App ()
     go sock = do
